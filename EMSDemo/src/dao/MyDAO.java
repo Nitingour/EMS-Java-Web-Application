@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import beans.EmpBean;
 
 public class MyDAO {
-
+// start method is used to establish connection from MYSQL DB
 	public Connection start()
 	{
 	Connection con=null;
