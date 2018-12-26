@@ -68,6 +68,25 @@ public class MyDAO {
 		return x;
 	}
 	
+	public int deleteEmp(int eid)
+	{
+		int x=0;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/emsdb","root","root");
+			PreparedStatement ps=con.prepareStatement("delete from Employee where eid=?");
+			ps.setInt(1,eid);
+			x= ps.executeUpdate();
+	       con.close();
+		}catch(ClassNotFoundException | SQLException w)
+			{
+			  System.out.println(w);
+			}
+		
+		return x;
+	}
+	
 	
 	public ArrayList<EmpBean>  viewEmp()
 	{
