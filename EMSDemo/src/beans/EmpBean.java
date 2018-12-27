@@ -2,7 +2,11 @@ package beans;
 
 public class EmpBean {
 
-	  int eid;
+	  @Override
+	public String toString() {
+		return "EmpBean [eid=" + eid + ", ename=" + ename + ", address=" + address + ", salary=" + salary + "]";
+	}
+	int eid;
 	  String ename,address;
 	  double salary;
 	public int getEid() {

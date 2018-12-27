@@ -31,7 +31,8 @@
 	<td> <%=ee.getEname()%> </td>
 	 <td><%=ee.getSalary()%> </td>
 	 <td><%=ee.getAddress()%> </td>
-
+  <td> <a href="EmpUpdateServlet?empid=<%=ee.getEid()%>" class="glyphicon glyphicon-edit"  onClick="return confirm('Do you really want to Update this record?')"></a> </td>
+	
 	  <td> <a href="EmpDeleteServlet?empid=<%=ee.getEid()%>" class="glyphicon glyphicon-remove-sign"  onClick="return confirm('Do you really want to delete this record?')"></a> </td>
 	 <tr/>
 	 <%

@@ -68,6 +68,28 @@ public class MyDAO {
 		return x;
 	}
 	
+	public int updateEmp(EmpBean e)
+	{
+		int x=0;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/emsdb","root","root");
+			PreparedStatement ps=con.prepareStatement("update Employee set ename=?,salary=?,address=? where eid=?");
+			ps.setInt(4,e.getEid());
+			ps.setString(1,e.getEname());
+			ps.setDouble(2, e.getSalary());
+			ps.setString(3, e.getAddress());
+			x= ps.executeUpdate();
+	       con.close();
+		}catch(ClassNotFoundException | SQLException w)
+			{
+			  System.out.println(w);
+			}
+		
+		return x;
+	}
+	
 	public int deleteEmp(int eid)
 	{
 		int x=0;
@@ -111,6 +133,34 @@ public class MyDAO {
 			  System.out.println(w);
 			}
 	return list;
+		
+	}
+	
+	public  EmpBean getEmpDetailsByEid(int eid)
+	{
+		EmpBean e=new EmpBean();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/emsdb","root","root");
+			PreparedStatement ps=con.prepareStatement("select * from Employee where eid=?");
+			ps.setInt(1,eid);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next())
+			{ 
+				
+				e.setEid(rs.getInt("eid"));
+				e.setEname(rs.getString("ename"));
+				e.setSalary(rs.getDouble("salary"));
+				e.setAddress(rs.getString("address"));
+			
+		     }
+			con.close();
+		}catch(ClassNotFoundException | SQLException w)
+			{
+			  System.out.println(w);
+			}
+		System.out.println(e);
+	return e;
 		
 	}
 	
